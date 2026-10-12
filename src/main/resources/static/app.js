@@ -6,7 +6,7 @@
   'use strict';
 
   /* ---------- Configuration ---------- */
-  const API_BASE_URL = 'http://localhost:9090';
+  const API_BASE_URL = '';
   const ENDPOINT = `${API_BASE_URL}/api/linkedin/generate`;
   const REQUEST_TIMEOUT_MS = 60000; // AI calls can be slow
   const MAX_ACHIEVEMENT = 500;

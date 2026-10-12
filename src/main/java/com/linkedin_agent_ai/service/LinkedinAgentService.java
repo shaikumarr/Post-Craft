@@ -10,7 +10,7 @@ import com.linkedin_agent_ai.dto.PostResponse;
 
 /**
  * Sits between the controller and Gemini.
- * Passes the form fields to GeminiService and maps the result into PostResponse.
+ * Generates the post and returns it. Nothing is stored.
  */
 @Service
 public class LinkedinAgentService {
@@ -23,7 +23,6 @@ public class LinkedinAgentService {
 
     public PostResponse generate(PostRequest request) {
 
-        // Light validation so Gemini never gets an empty prompt
         if (request.getAchievement() == null || request.getAchievement().isBlank()) {
             throw new IllegalArgumentException("Achievement is required");
         }
@@ -34,7 +33,6 @@ public class LinkedinAgentService {
 
         List<String> skills = request.getSkills() == null ? List.of() : request.getSkills();
 
-        // Calls Gemini with the achievement, tone and skills
         Map<String, Object> result =
                 geminiService.generatePost(request.getAchievement(), tone, skills);
 
