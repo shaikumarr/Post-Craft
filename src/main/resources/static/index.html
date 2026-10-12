@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Turn your achievements into LinkedIn posts with AI." />
+  <title>PostCraft · AI LinkedIn Content Creator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Decorative background blobs -->
+  <div class="bg-blob blob-1" aria-hidden="true"></div>
+  <div class="bg-blob blob-2" aria-hidden="true"></div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar glass">
+    <a class="brand" href="#top" aria-label="PostCraft home">
+      <span class="brand-logo" aria-hidden="true">in</span>
+      <span class="brand-title">PostCraft <small>AI LinkedIn Content Creator</small></span>
+    </a>
+    <a class="nav-cta" href="#generator">Write a post</a>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Turn your wins into posts people actually read.</h1>
+        <p>Describe an achievement, pick a tone, add your skills. Get a ready-to-publish LinkedIn post, hashtags, and tips to boost engagement.</p>
+        <a class="btn btn-primary" href="#generator">Start writing</a>
+      </div>
+      <!-- Sample post preview -->
+      <aside class="hero-preview glass" aria-label="Example of a generated post">
+        <div class="preview-head">
+          <span class="avatar" aria-hidden="true">You</span>
+          <div><strong>Shai Kumar R</strong><span>Software Engineer</span></div>
+        </div>
+        <p>Thrilled to share that I just earned my Kafka certification! Months of hands-on practice with event streaming finally paid off.</p>
+        <p class="preview-tags">#Java #MySQL #SpringBoot</p>
+      </aside>
+    </section>
+
+    <!-- ============ DASHBOARD ============ -->
+    <section class="dashboard" id="generator">
+      <div class="dash-header">
+        <h2>Content studio</h2>
+        <p>Fill in the details and generate your post in seconds.</p>
+      </div>
+
+      <div class="dash-grid">
+        <!-- ---------- Form card ---------- -->
+        <div class="card glass form-card">
+          <h3>Create your post</h3>
+          <form id="postForm" novalidate>
+            <div class="field">
+              <label for="achievement">Achievement</label>
+              <textarea id="achievement" rows="5" maxlength="500"
+                placeholder="e.g. Completed Kafka Certification" aria-describedby="achievementCount achievementError"></textarea>
+              <div class="field-meta">
+                <span class="error-text" id="achievementError" role="alert"></span>
+                <span class="counter" id="achievementCount">0 / 500</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tone">Tone</label>
+              <select id="tone">
+                <option value="Professional">Professional</option>
+                <option value="Inspirational">Inspirational</option>
+                <option value="Casual">Casual</option>
+                <option value="Humble">Humble</option>
+                <option value="Enthusiastic">Enthusiastic</option>
+                <option value="Storytelling">Storytelling</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="skillInput">Skills</label>
+              <div class="chip-input" id="chipBox">
+                <input id="skillInput" type="text" placeholder="Type a skill, press Enter or comma"
+                  autocomplete="off" aria-describedby="skillsError" />
+              </div>
+              <div class="field-meta">
+                <span class="error-text" id="skillsError" role="alert"></span>
+                <span class="counter" id="skillCount">0 / 10</span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn btn-primary" id="generateBtn">
+                <span class="spinner" aria-hidden="true"></span>
+                <span class="btn-label">Generate post</span>
+              </button>
+              <button type="button" class="btn btn-ghost" id="clearBtn">Clear form</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ---------- Results ---------- -->
+        <div class="results" aria-live="polite">
+          <div class="card glass post-card">
+            <div class="card-head">
+              <h3>Generated post</h3>
+              <button type="button" class="btn btn-small" id="copyBtn" disabled>Copy post</button>
+            </div>
+            <div class="empty" id="postEmpty">Your post will appear here once you generate it.</div>
+            <div class="post-body" id="postContent" hidden></div>
+            <div class="counter post-counter" id="postCount" hidden>0 / 3000</div>
+          </div>
+
+          <div class="results-row">
+            <div class="card glass">
+              <h3>Hashtags</h3>
+              <div class="empty" id="tagsEmpty">Suggested hashtags show up here.</div>
+              <div class="tags" id="hashtags"></div>
+            </div>
+            <div class="card glass">
+              <h3>Engagement tips</h3>
+              <div class="empty" id="tipsEmpty">Tips to get more reach show up here.</div>
+              <ul class="tips" id="tips"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <p>© <span id="year"></span> PostCraft. Posts are drafts: review before publishing.</p>
+  </footer>
+
+  <!-- Toast notifications -->
+  <div class="toast-region" id="toasts" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
