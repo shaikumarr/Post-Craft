@@ -192,6 +192,17 @@ textarea:focus, select:focus, .chip-input:focus-within {
 /* ---------- Footer ---------- */
 .footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 28px 16px; border-top: 1px solid var(--line); }
 
+/* "Powered by" badge. The logo has a white background, so it sits in a white chip */
+.powered-by { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 14px; }
+.powered-text { font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+.powered-logo-chip {
+  display: inline-flex; align-items: center; background: #fff; border: 1px solid var(--line);
+  border-radius: 12px; padding: 6px 14px; box-shadow: 0 4px 14px rgba(10, 60, 120, 0.08);
+  transition: transform .2s, box-shadow .2s; text-decoration: none; cursor: pointer;
+}
+.powered-logo-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.powered-logo { display: block; height: 40px; width: auto; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; padding: 48px 0 36px; }
